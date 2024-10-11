@@ -241,7 +241,8 @@ docker-compose up -d
    - Acesse o DNS gerado pelo Load Balancer: `http://projeto2-lb-<id>.us-east-1.elb.amazonaws.com/`
    - Certifique-se de que a aplicação WordPress está disponível.
   
-![{935B475D-092C-42F5-BAEA-C6E6A84AE2DF}](https://github.com/user-attachments/assets/483661c7-17e4-4ebf-826e-1d75c8ada70e)
+![{59AB1FB6-7BDF-4514-B6DE-5BD2CBBB1B07}](https://github.com/user-attachments/assets/a4bac839-e986-4cc0-a372-d2f64474bf1a)
+
 
 
 2. **Teste o Auto Scaling:**
