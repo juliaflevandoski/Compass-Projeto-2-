@@ -1,5 +1,4 @@
 # Projeto 2 - Deploy de Aplicação WordPress com Docker e AWS
-![{354DD27D-2C18-42D3-8880-1D0434CDE179}](https://github.com/user-attachments/assets/6f4ca662-307a-4781-aa25-59cbb2731977)
 
 ## Sumário
 - [Visão Geral](#visão-geral)
@@ -16,6 +15,8 @@
 ## Visão Geral
 
 Este projeto implementa uma aplicação WordPress utilizando Docker, RDS, EFS e EC2 na AWS. A infraestrutura inclui a criação de uma VPC, subnets privadas e públicas, security groups, um banco de dados RDS, e o uso de um Load Balancer para gerenciar o tráfego. Além disso, usamos um Auto Scaling Group para ajustar a capacidade de acordo com a demanda de CPU.
+
+![{354DD27D-2C18-42D3-8880-1D0434CDE179}](https://github.com/user-attachments/assets/6f4ca662-307a-4781-aa25-59cbb2731977)
 
 ---
 
