@@ -105,7 +105,7 @@ sudo yum install -y nfs-utils amazon-efs-utils
 
 # Montar EFS
 sudo mkdir -p /mnt/efs
-sudo mount -t efs fs-04b149721782e2bc2:/ /mnt/efs
+sudo mount -t efs SEU-ID-EFS:/ /mnt/efs
 
 # Instalar Docker e Docker Compose
 sudo amazon-linux-extras install docker -y
