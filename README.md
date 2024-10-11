@@ -1,4 +1,5 @@
 # Projeto 2 - Deploy de Aplicação WordPress com Docker e AWS
+![{354DD27D-2C18-42D3-8880-1D0434CDE179}](https://github.com/user-attachments/assets/6f4ca662-307a-4781-aa25-59cbb2731977)
 
 ## Sumário
 - [Visão Geral](#visão-geral)
