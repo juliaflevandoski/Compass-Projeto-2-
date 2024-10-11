@@ -1,7 +1,3 @@
-Vou detalhar mais a documentação para o seu GitHub, cobrindo todos os passos que você seguiu com informações detalhadas. Aqui está uma versão aprimorada:
-
----
-
 # Projeto 2 - Deploy de Aplicação WordPress com Docker e AWS
 
 ## Sumário
