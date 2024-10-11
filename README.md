@@ -2,7 +2,6 @@
 
 ## Sumário
 - [Visão Geral](#visão-geral)
-- [Pré-requisitos](#pré-requisitos)
 - [Passos Detalhados](#passos-detalhados)
   - [1. Configuração de VPC](#1-configuração-de-vpc)
   - [2. Configuração de Security Groups](#2-configuração-de-security-groups)
@@ -17,14 +16,6 @@
 Este projeto implementa uma aplicação WordPress utilizando Docker, RDS, EFS e EC2 na AWS. A infraestrutura inclui a criação de uma VPC, subnets privadas e públicas, security groups, um banco de dados RDS, e o uso de um Load Balancer para gerenciar o tráfego. Além disso, usamos um Auto Scaling Group para ajustar a capacidade de acordo com a demanda de CPU.
 
 ![{354DD27D-2C18-42D3-8880-1D0434CDE179}](https://github.com/user-attachments/assets/6f4ca662-307a-4781-aa25-59cbb2731977)
-
----
-
-## Pré-requisitos
-- Conta AWS ativa.
-- AWS CLI configurado no seu ambiente.
-- Acesso SSH à instância EC2 com uma key pair válida.
-- Git para versionamento de código.
 
 ---
 
