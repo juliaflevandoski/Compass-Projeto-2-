@@ -143,10 +143,10 @@ services:
     ports:
       - "80:80"  
     environment:
-      WORDPRESS_DB_HOST: "database-projeto2.ctge260sgc1v.us-east-1.rds.amazonaws.com"
-      WORDPRESS_DB_USER: "julia"
+      WORDPRESS_DB_HOST: "NOME_DO_SEU_HOST"
+      WORDPRESS_DB_USER: "NOME_DO_SEU_USER"
       WORDPRESS_DB_PASSWORD: "SUA_SENHA_DO_BANCO"
-      WORDPRESS_DB_NAME: "NOME_DO_SEU_BANCO"
+      WORDPRESS_DB_NAME: "NOME_DO_SEU_BANCO" 
       TZ: "America/Sao_Paulo"
     volumes:
       - /mnt/efs:/var/www/html  
