@@ -26,22 +26,37 @@ Este projeto implementa uma aplicação WordPress utilizando Docker, RDS, EFS e 
 1.1. **Criar VPC:**
    - Nome: `projeto2-vpc`
    - Bloco CIDR: `10.0.0.0/16`
+![{BB57F68E-1C2F-4CC1-A06C-A8510FD9B310}](https://github.com/user-attachments/assets/ed150be9-c6d1-4003-9284-a1ed2b32bac6)
+
 
 1.2. **Subnets:**
    - Criar duas subnets privadas (para as instâncias EC2):
      - `projeto2-private-subnet-1` (CIDR: `10.0.1.0/24`)
+![{56807A4A-EFAF-472B-ABD4-471E0B502A94}](https://github.com/user-attachments/assets/31957dae-e1db-49f9-9ec5-32ff09fe0fe5)
+
      - `projeto2-private-subnet-2` (CIDR: `10.0.2.0/24`)
+![{B567FC3A-D1D1-4583-8DCF-83D6EB067D93}](https://github.com/user-attachments/assets/dbc37f2f-75b9-4615-881e-dd01e16538c9)
+
    - Criar duas subnets públicas (para o Load Balancer):
      - `projeto2-public-subnet-1` (CIDR: `10.0.3.0/24`)
+![{5BF69667-828C-4A64-93F8-B9B9BB49FF34}](https://github.com/user-attachments/assets/d99f76d4-7534-4d7b-ae85-d83a66f3c765)
+
      - `projeto2-public-subnet-2` (CIDR: `10.0.4.0/24`)
+![{B5091F9C-DB75-4CF9-A123-A5E9354F39BE}](https://github.com/user-attachments/assets/84d75690-04f8-4ed6-ac84-9063f338d696)
+
 
 1.3. **Internet Gateway:**
    - Nome: `projeto2-igw`
    - Associar à VPC `projeto2-vpc`.
+![{4DD07EAB-A575-4CE1-83C3-932A5B319881}](https://github.com/user-attachments/assets/09f65c9b-62bd-41f5-bbcd-e7d1e6a236c1)
+
 
 1.4. **Route Tables:**
    - Criar e associar uma route table pública, permitindo saída para o Internet Gateway.
+![{F2EF8982-2336-4F55-B3D5-AC926AD9AFE3}](https://github.com/user-attachments/assets/0e168da2-9935-4463-8474-9bdd3e469f05)
+
    - Criar e associar uma route table privada para as subnets privadas.
+![{C51C8266-820C-4511-897A-28EB9B517692}](https://github.com/user-attachments/assets/f4c42f5b-beb0-4d62-b322-deb4316d8743)
 
 ---
 
@@ -53,22 +68,32 @@ Este projeto implementa uma aplicação WordPress utilizando Docker, RDS, EFS e 
    - Regras de entrada:
      - HTTP (80) vindo do Load Balancer
      - SSH (22) apenas do seu IP
+![{762943A8-C590-46FA-BAEB-96A7761482F4}](https://github.com/user-attachments/assets/f1526eb5-1b97-4025-b31a-f525a541a6c4)
+
    - Regras de saída:
      - MySQL (3306) para o Security Group do RDS
      - NFS (2049) para o Security Group do EFS
      - HTTP (80) e HTTPS (443) para qualquer lugar (0.0.0.0/0)
+![{2D09F26F-D03F-49BE-97F2-9935C639B541}](https://github.com/user-attachments/assets/2276d075-feed-44e9-8d94-d6222887a628)
+
 
 **rds-sg**:
    - Regras de entrada:
      - MySQL (3306) vindo do `ec2-sg`
+![{CD8062C1-5AD5-42BE-896C-6BF3EC2D7B00}](https://github.com/user-attachments/assets/78366200-51a3-4dc9-a34d-668d35526e40)
+
 
 **efs-sg**:
    - Regras de entrada:
      - NFS (2049) vindo do `ec2-sg`
+![{5859A8CC-1DD6-412B-986B-08D0CC09BFD7}](https://github.com/user-attachments/assets/ca97c9d3-ce32-4859-ba9e-9a11ea5e95e7)
+
 
 **lb-sg**:
    - Regras de entrada:
      - HTTP (80) e HTTPS (443) de qualquer lugar (0.0.0.0/0)
+![{B6CC8AD9-ADCA-422B-8180-BCC37FE5D5EE}](https://github.com/user-attachments/assets/cfc508f6-51b4-4ac6-bcd4-cbe0e40deac2)
+
 
 ---
 
@@ -80,14 +105,19 @@ Este projeto implementa uma aplicação WordPress utilizando Docker, RDS, EFS e 
    - Nome de usuário: `julia`
    - Endereço de endpoint: `database-projeto2.ctge260sgc1v.us-east-1.rds.amazonaws.com`
    - Security Group: `rds-sg`
+![{82D55225-8440-4BA8-864B-4B9B0D75DF7E}](https://github.com/user-attachments/assets/fa349e94-f8d5-400c-b722-262574f38567)
+
 
 ---
 
 ### 4. Configuração de EC2 e EFS
 
 4.1. **Criar o EFS:**
-   - ID do EFS: `fs-04b149721782e2bc2.efs.us-east-1.amazonaws.com`
+   - Nome: projeto2-efs
    - Security Group: `efs-sg`
+![{9AF23F3F-992E-44AE-9B34-BA7AD04E540F}](https://github.com/user-attachments/assets/47c10bef-4be3-40e5-9aac-072262953b0c)
+![{55874E17-2912-4998-A50A-7A65A2D96B32}](https://github.com/user-attachments/assets/a64ec0f2-5d33-4d01-b35d-46be0cda80a3)
+
 
 4.2. **Criar Instâncias EC2:**
    - AMI: Amazon Linux 2
@@ -96,6 +126,8 @@ Este projeto implementa uma aplicação WordPress utilizando Docker, RDS, EFS e 
    - Desabilitar IP público
    - Security Group: `ec2-sg`
    - Adicionar a key pair para conexão SSH
+![{7ED454DD-9FC5-403D-A87B-6EE0F717D625}](https://github.com/user-attachments/assets/eaf7e1a1-34d1-41b5-bacc-0110f897aada)
+
    - No campo de **User Data**, utilize o seguinte script:
 
 ```bash
@@ -162,6 +194,8 @@ docker-compose up -d
    - VPC: `projeto2-vpc`
    - Subnets: Selecione as subnets públicas
    - Security Group: `lb-sg`
+![{38AC91CB-FF02-4189-BBB1-E6E501FB37D1}](https://github.com/user-attachments/assets/e4a3ee34-1e60-4b01-aaeb-a6e3de98c784)
+
 
 5.2. **Configurar Listener e Target Group:**
    - Listener: HTTP na porta 80
@@ -172,6 +206,7 @@ docker-compose up -d
      - Tipo de alvo: Instâncias EC2
      - Health check path: `/`
    - Registrar as duas instâncias EC2 criadas no Target Group.
+![{15102DC0-FD28-4B79-939C-A717758C000C}](https://github.com/user-attachments/assets/76106964-3b05-4475-9c65-997d4d3b72b1)
 
 ---
 
@@ -183,6 +218,8 @@ docker-compose up -d
    - Tipo de instância: t2.micro
    - Security Group: `ec2-sg`
    - Adicionar **User Data** com o mesmo script da seção anterior.
+![{2642B8CF-26DB-4AF0-94E6-04EC3A12C888}](https://github.com/user-attachments/assets/175ad8d8-4560-48dc-8f3b-72635b49d9b3)
+
 
 6.2. **Criar Auto Scaling Group:**
    - Nome: `projeto2-AS`
@@ -203,6 +240,8 @@ docker-compose up -d
 1. **Verifique o acesso à aplicação WordPress:**
    - Acesse o DNS gerado pelo Load Balancer: `http://projeto2-lb-<id>.us-east-1.elb.amazonaws.com/`
    - Certifique-se de que a aplicação WordPress está disponível.
+![{935B475D-092C-42F5-BAEA-C6E6A84AE2DF}](https://github.com/user-attachments/assets/483661c7-17e4-4ebf-826e-1d75c8ada70e)
+
 
 2. **Teste o Auto Scaling:**
    - Simule um aumento de carga nas instâncias e verifique se o Auto Scaling é ativado corretamente.
