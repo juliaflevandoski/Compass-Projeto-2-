@@ -217,7 +217,40 @@ docker-compose up -d
 
 2. **Teste o Auto Scaling:**
    - Simule um aumento de carga nas instâncias e verifique se o Auto Scaling é ativado corretamente.
+Continuando a documentação:
 
+3. **Verifique o EFS:**
+   - Conecte-se às instâncias EC2 via SSH usando a key pair configurada.
+   - Verifique se o sistema de arquivos EFS foi montado corretamente em `/mnt/efs`.
+   - Navegue até o diretório `/mnt/efs` e verifique se os arquivos do WordPress estão sendo armazenados lá.
 
+```bash
+ls /mnt/efs
+```
 
+   - O comando acima deve listar os arquivos e pastas relacionados ao WordPress, confirmando que o EFS está funcionando como esperado.
 
+4. **Verifique o Banco de Dados RDS:**
+   - Teste a conexão com o banco de dados RDS a partir das instâncias EC2.
+   - Execute o seguinte comando em uma das instâncias para testar a conexão MySQL:
+
+```bash
+mysql -h database-projeto2.ctge260sgc1v.us-east-1.rds.amazonaws.com -u julia -p
+```
+
+   - Insira a senha do banco de dados quando solicitado. Isso deve conectar ao banco de dados RDS e permitir a execução de consultas MySQL.
+
+5. **Verificação do Load Balancer:**
+   - Acesse o DNS do Load Balancer novamente para verificar se o balanceamento de carga está funcionando corretamente. Certifique-se de que o tráfego HTTP é distribuído entre as instâncias EC2.
+   - Verifique no console AWS se o Health Check do Target Group está reportando as instâncias como "healthy".
+
+6. **Verificação do Auto Scaling:**
+   - Monitore o comportamento do Auto Scaling Group configurado.
+   - Simule uma alta carga de CPU nas instâncias para verificar se o Auto Scaling cria novas instâncias automaticamente.
+   - Verifique também se, após a diminuição da carga, o Auto Scaling remove instâncias de acordo com a política configurada.
+
+---
+
+## Conclusão
+
+Neste projeto, foi implementado um ambiente robusto na AWS para hospedar uma aplicação WordPress utilizando Docker, Amazon RDS para o banco de dados, Amazon EFS para armazenamento compartilhado, e um Application Load Balancer para distribuir o tráfego entre as instâncias EC2. O Auto Scaling Group foi configurado para garantir que a infraestrutura possa aumentar e diminuir conforme a demanda de tráfego, garantindo alta disponibilidade.
